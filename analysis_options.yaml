@@ -4,3 +4,8 @@ linter:
   rules:
     sort_pub_dependencies: false
     curly_braces_in_flow_control_structures: false
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
