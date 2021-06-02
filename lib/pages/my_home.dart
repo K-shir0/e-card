@@ -49,10 +49,7 @@ class MyHomePage extends HookWidget {
             ),
             Text(
               '${_counter.value}',
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline4,
+              style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
