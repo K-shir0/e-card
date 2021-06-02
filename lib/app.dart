@@ -1,8 +1,6 @@
 import 'package:e_card/pages/home.dart';
 import 'package:flutter/material.dart';
 
-import 'pages/my_home.dart';
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
