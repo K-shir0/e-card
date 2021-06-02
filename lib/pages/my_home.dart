@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 class MyHomePage extends HookWidget {
   final String title;
 
-  const MyHomePage({this.title = ""});
+  const MyHomePage({required this.title});
 
   @override
   Widget build(BuildContext context) {

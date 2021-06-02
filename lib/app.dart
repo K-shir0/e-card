@@ -1,3 +1,4 @@
+import 'package:e_card/pages/home.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/my_home.dart';
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: HomePage(),
     );
   }
 }
