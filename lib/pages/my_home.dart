@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 class MyHomePage extends HookWidget {
   final String title;
 
-  MyHomePage({this.title = ""});
+  const MyHomePage({this.title = ""});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class MyHomePage extends HookWidget {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'You have pushed the button this many times:',
             ),
             Text(
@@ -60,7 +60,7 @@ class MyHomePage extends HookWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
