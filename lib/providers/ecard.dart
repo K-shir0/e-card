@@ -13,22 +13,22 @@ class ECard with _$ECard {
     */
     // プレイヤー1
     @Default([
-      Card(cardType: CardType.citizen),
-      Card(cardType: CardType.citizen),
-      Card(cardType: CardType.citizen),
-      Card(cardType: CardType.citizen),
-      Card(cardType: CardType.emperor)
+      EmperorCard(cardType: CardType.citizen),
+      EmperorCard(cardType: CardType.citizen),
+      EmperorCard(cardType: CardType.citizen),
+      EmperorCard(cardType: CardType.citizen),
+      EmperorCard(cardType: CardType.emperor)
     ])
-        List<Card> player1Deck,
+        List<EmperorCard> player1Deck,
     // プレイヤー2
     @Default([
-      Card(cardType: CardType.citizen),
-      Card(cardType: CardType.citizen),
-      Card(cardType: CardType.citizen),
-      Card(cardType: CardType.citizen),
-      Card(cardType: CardType.slave)
+      EmperorCard(cardType: CardType.citizen),
+      EmperorCard(cardType: CardType.citizen),
+      EmperorCard(cardType: CardType.citizen),
+      EmperorCard(cardType: CardType.citizen),
+      EmperorCard(cardType: CardType.slave)
     ])
-        List<Card> player2Deck,
+        List<EmperorCard> player2Deck,
 
     /*
     * 選択したカード

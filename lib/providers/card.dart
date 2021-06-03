@@ -9,14 +9,14 @@ enum CardType {
 }
 
 @freezed
-class Card with _$Card {
-  const factory Card({
+class EmperorCard with _$EmperorCard {
+  const factory EmperorCard({
     @Default(CardType.citizen) CardType cardType,
-  }) = _Card;
+  }) = _EmperorCard;
 
-  const Card._();
+  const EmperorCard._();
 
-  int compare(Card card) {
+  int compare(EmperorCard card) {
     switch (cardType) {
       // 奴隷 vs
       case CardType.slave:

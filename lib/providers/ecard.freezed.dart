@@ -17,19 +17,19 @@ class _$ECardTearOff {
   const _$ECardTearOff();
 
   _ECard call(
-      {List<Card> player1Deck = const [
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.emperor)
+      {List<EmperorCard> player1Deck = const [
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.emperor)
       ],
-      List<Card> player2Deck = const [
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.slave)
+      List<EmperorCard> player2Deck = const [
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.slave)
       ],
       int? cardChosenByPlayer1,
       int? cardChosenByPlayer2,
@@ -53,35 +53,31 @@ const $ECard = _$ECardTearOff();
 
 /// @nodoc
 mixin _$ECard {
+/*
+    * デッキ
+    */
+// プレイヤー1
+  List<EmperorCard> get player1Deck =>
+      throw _privateConstructorUsedError; // プレイヤー2
+  List<EmperorCard> get player2Deck => throw _privateConstructorUsedError;
   /*
-  * デッキ
-  */
-  // プレイヤー1
-  List<Card> get player1Deck => throw _privateConstructorUsedError; // プレイヤー2
-  List<Card> get player2Deck => throw _privateConstructorUsedError;
-
-  /*
-   * 選択したカード
-   */
+    * 選択したカード
+    */
   int? get cardChosenByPlayer1 => throw _privateConstructorUsedError;
-
   int? get cardChosenByPlayer2 => throw _privateConstructorUsedError;
-
   /*
-   * ターン
-   */
+     * ターン
+     */
   int get turn => throw _privateConstructorUsedError;
-
   /*
-   * フェイズ
-   */
+     * フェイズ
+     */
   int get phase => throw _privateConstructorUsedError;
-
   /*
-   * 勝利フラグ
-   * 1 -> プレイヤー1の勝利
-   * 2 -> プレイヤー2の勝利
-   */
+     * 勝利フラグ
+     * 1 -> プレイヤー1の勝利
+     * 2 -> プレイヤー2の勝利
+     */
   int get winFlag => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -92,10 +88,9 @@ mixin _$ECard {
 abstract class $ECardCopyWith<$Res> {
   factory $ECardCopyWith(ECard value, $Res Function(ECard) then) =
       _$ECardCopyWithImpl<$Res>;
-
   $Res call(
-      {List<Card> player1Deck,
-      List<Card> player2Deck,
+      {List<EmperorCard> player1Deck,
+      List<EmperorCard> player2Deck,
       int? cardChosenByPlayer1,
       int? cardChosenByPlayer2,
       int turn,
@@ -108,7 +103,6 @@ class _$ECardCopyWithImpl<$Res> implements $ECardCopyWith<$Res> {
   _$ECardCopyWithImpl(this._value, this._then);
 
   final ECard _value;
-
   // ignore: unused_field
   final $Res Function(ECard) _then;
 
@@ -126,11 +120,11 @@ class _$ECardCopyWithImpl<$Res> implements $ECardCopyWith<$Res> {
       player1Deck: player1Deck == freezed
           ? _value.player1Deck
           : player1Deck // ignore: cast_nullable_to_non_nullable
-              as List<Card>,
+              as List<EmperorCard>,
       player2Deck: player2Deck == freezed
           ? _value.player2Deck
           : player2Deck // ignore: cast_nullable_to_non_nullable
-              as List<Card>,
+              as List<EmperorCard>,
       cardChosenByPlayer1: cardChosenByPlayer1 == freezed
           ? _value.cardChosenByPlayer1
           : cardChosenByPlayer1 // ignore: cast_nullable_to_non_nullable
@@ -159,11 +153,10 @@ class _$ECardCopyWithImpl<$Res> implements $ECardCopyWith<$Res> {
 abstract class _$ECardCopyWith<$Res> implements $ECardCopyWith<$Res> {
   factory _$ECardCopyWith(_ECard value, $Res Function(_ECard) then) =
       __$ECardCopyWithImpl<$Res>;
-
   @override
   $Res call(
-      {List<Card> player1Deck,
-      List<Card> player2Deck,
+      {List<EmperorCard> player1Deck,
+      List<EmperorCard> player2Deck,
       int? cardChosenByPlayer1,
       int? cardChosenByPlayer2,
       int turn,
@@ -194,11 +187,11 @@ class __$ECardCopyWithImpl<$Res> extends _$ECardCopyWithImpl<$Res>
       player1Deck: player1Deck == freezed
           ? _value.player1Deck
           : player1Deck // ignore: cast_nullable_to_non_nullable
-              as List<Card>,
+              as List<EmperorCard>,
       player2Deck: player2Deck == freezed
           ? _value.player2Deck
           : player2Deck // ignore: cast_nullable_to_non_nullable
-              as List<Card>,
+              as List<EmperorCard>,
       cardChosenByPlayer1: cardChosenByPlayer1 == freezed
           ? _value.cardChosenByPlayer1
           : cardChosenByPlayer1 // ignore: cast_nullable_to_non_nullable
@@ -228,18 +221,18 @@ class __$ECardCopyWithImpl<$Res> extends _$ECardCopyWithImpl<$Res>
 class _$_ECard extends _ECard {
   const _$_ECard(
       {this.player1Deck = const [
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.emperor)
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.emperor)
       ],
       this.player2Deck = const [
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.citizen),
-        const Card(cardType: CardType.slave)
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.citizen),
+        const EmperorCard(cardType: CardType.slave)
       ],
       this.cardChosenByPlayer1,
       this.cardChosenByPlayer2,
@@ -249,27 +242,27 @@ class _$_ECard extends _ECard {
       : super._();
 
   @JsonKey(defaultValue: const [
-    const Card(cardType: CardType.citizen),
-    const Card(cardType: CardType.citizen),
-    const Card(cardType: CardType.citizen),
-    const Card(cardType: CardType.citizen),
-    const Card(cardType: CardType.emperor)
+    const EmperorCard(cardType: CardType.citizen),
+    const EmperorCard(cardType: CardType.citizen),
+    const EmperorCard(cardType: CardType.citizen),
+    const EmperorCard(cardType: CardType.citizen),
+    const EmperorCard(cardType: CardType.emperor)
   ])
   @override
   /*
     * デッキ
     */
 // プレイヤー1
-  final List<Card> player1Deck;
+  final List<EmperorCard> player1Deck;
   @JsonKey(defaultValue: const [
-    const Card(cardType: CardType.citizen),
-    const Card(cardType: CardType.citizen),
-    const Card(cardType: CardType.citizen),
-    const Card(cardType: CardType.citizen),
-    const Card(cardType: CardType.slave)
+    const EmperorCard(cardType: CardType.citizen),
+    const EmperorCard(cardType: CardType.citizen),
+    const EmperorCard(cardType: CardType.citizen),
+    const EmperorCard(cardType: CardType.citizen),
+    const EmperorCard(cardType: CardType.slave)
   ])
   @override // プレイヤー2
-  final List<Card> player2Deck;
+  final List<EmperorCard> player2Deck;
   @override
   /*
     * 選択したカード
@@ -346,14 +339,13 @@ class _$_ECard extends _ECard {
 
 abstract class _ECard extends ECard {
   const factory _ECard(
-      {List<Card> player1Deck,
-      List<Card> player2Deck,
+      {List<EmperorCard> player1Deck,
+      List<EmperorCard> player2Deck,
       int? cardChosenByPlayer1,
       int? cardChosenByPlayer2,
       int turn,
       int phase,
       int winFlag}) = _$_ECard;
-
   const _ECard._() : super._();
 
   @override
@@ -361,32 +353,26 @@ abstract class _ECard extends ECard {
     * デッキ
     */
 // プレイヤー1
-  List<Card> get player1Deck => throw _privateConstructorUsedError;
-
+  List<EmperorCard> get player1Deck => throw _privateConstructorUsedError;
   @override // プレイヤー2
-  List<Card> get player2Deck => throw _privateConstructorUsedError;
-
+  List<EmperorCard> get player2Deck => throw _privateConstructorUsedError;
   @override
   /*
     * 選択したカード
     */
   int? get cardChosenByPlayer1 => throw _privateConstructorUsedError;
-
   @override
   int? get cardChosenByPlayer2 => throw _privateConstructorUsedError;
-
   @override
   /*
      * ターン
      */
   int get turn => throw _privateConstructorUsedError;
-
   @override
   /*
      * フェイズ
      */
   int get phase => throw _privateConstructorUsedError;
-
   @override
   /*
      * 勝利フラグ
@@ -394,7 +380,6 @@ abstract class _ECard extends ECard {
      * 2 -> プレイヤー2の勝利
      */
   int get winFlag => throw _privateConstructorUsedError;
-
   @override
   @JsonKey(ignore: true)
   _$ECardCopyWith<_ECard> get copyWith => throw _privateConstructorUsedError;

@@ -13,41 +13,43 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$CardTearOff {
-  const _$CardTearOff();
+class _$EmperorCardTearOff {
+  const _$EmperorCardTearOff();
 
-  _Card call({CardType cardType = CardType.citizen}) {
-    return _Card(
+  _EmperorCard call({CardType cardType = CardType.citizen}) {
+    return _EmperorCard(
       cardType: cardType,
     );
   }
 }
 
 /// @nodoc
-const $Card = _$CardTearOff();
+const $EmperorCard = _$EmperorCardTearOff();
 
 /// @nodoc
-mixin _$Card {
+mixin _$EmperorCard {
   CardType get cardType => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CardCopyWith<Card> get copyWith => throw _privateConstructorUsedError;
+  $EmperorCardCopyWith<EmperorCard> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CardCopyWith<$Res> {
-  factory $CardCopyWith(Card value, $Res Function(Card) then) =
-      _$CardCopyWithImpl<$Res>;
+abstract class $EmperorCardCopyWith<$Res> {
+  factory $EmperorCardCopyWith(
+          EmperorCard value, $Res Function(EmperorCard) then) =
+      _$EmperorCardCopyWithImpl<$Res>;
   $Res call({CardType cardType});
 }
 
 /// @nodoc
-class _$CardCopyWithImpl<$Res> implements $CardCopyWith<$Res> {
-  _$CardCopyWithImpl(this._value, this._then);
+class _$EmperorCardCopyWithImpl<$Res> implements $EmperorCardCopyWith<$Res> {
+  _$EmperorCardCopyWithImpl(this._value, this._then);
 
-  final Card _value;
+  final EmperorCard _value;
   // ignore: unused_field
-  final $Res Function(Card) _then;
+  final $Res Function(EmperorCard) _then;
 
   @override
   $Res call({
@@ -63,27 +65,30 @@ class _$CardCopyWithImpl<$Res> implements $CardCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$CardCopyWith<$Res> implements $CardCopyWith<$Res> {
-  factory _$CardCopyWith(_Card value, $Res Function(_Card) then) =
-      __$CardCopyWithImpl<$Res>;
+abstract class _$EmperorCardCopyWith<$Res>
+    implements $EmperorCardCopyWith<$Res> {
+  factory _$EmperorCardCopyWith(
+          _EmperorCard value, $Res Function(_EmperorCard) then) =
+      __$EmperorCardCopyWithImpl<$Res>;
   @override
   $Res call({CardType cardType});
 }
 
 /// @nodoc
-class __$CardCopyWithImpl<$Res> extends _$CardCopyWithImpl<$Res>
-    implements _$CardCopyWith<$Res> {
-  __$CardCopyWithImpl(_Card _value, $Res Function(_Card) _then)
-      : super(_value, (v) => _then(v as _Card));
+class __$EmperorCardCopyWithImpl<$Res> extends _$EmperorCardCopyWithImpl<$Res>
+    implements _$EmperorCardCopyWith<$Res> {
+  __$EmperorCardCopyWithImpl(
+      _EmperorCard _value, $Res Function(_EmperorCard) _then)
+      : super(_value, (v) => _then(v as _EmperorCard));
 
   @override
-  _Card get _value => super._value as _Card;
+  _EmperorCard get _value => super._value as _EmperorCard;
 
   @override
   $Res call({
     Object? cardType = freezed,
   }) {
-    return _then(_Card(
+    return _then(_EmperorCard(
       cardType: cardType == freezed
           ? _value.cardType
           : cardType // ignore: cast_nullable_to_non_nullable
@@ -94,8 +99,8 @@ class __$CardCopyWithImpl<$Res> extends _$CardCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Card extends _Card {
-  const _$_Card({this.cardType = CardType.citizen}) : super._();
+class _$_EmperorCard extends _EmperorCard {
+  const _$_EmperorCard({this.cardType = CardType.citizen}) : super._();
 
   @JsonKey(defaultValue: CardType.citizen)
   @override
@@ -103,13 +108,13 @@ class _$_Card extends _Card {
 
   @override
   String toString() {
-    return 'Card(cardType: $cardType)';
+    return 'EmperorCard(cardType: $cardType)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Card &&
+        (other is _EmperorCard &&
             (identical(other.cardType, cardType) ||
                 const DeepCollectionEquality()
                     .equals(other.cardType, cardType)));
@@ -121,17 +126,18 @@ class _$_Card extends _Card {
 
   @JsonKey(ignore: true)
   @override
-  _$CardCopyWith<_Card> get copyWith =>
-      __$CardCopyWithImpl<_Card>(this, _$identity);
+  _$EmperorCardCopyWith<_EmperorCard> get copyWith =>
+      __$EmperorCardCopyWithImpl<_EmperorCard>(this, _$identity);
 }
 
-abstract class _Card extends Card {
-  const factory _Card({CardType cardType}) = _$_Card;
-  const _Card._() : super._();
+abstract class _EmperorCard extends EmperorCard {
+  const factory _EmperorCard({CardType cardType}) = _$_EmperorCard;
+  const _EmperorCard._() : super._();
 
   @override
   CardType get cardType => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CardCopyWith<_Card> get copyWith => throw _privateConstructorUsedError;
+  _$EmperorCardCopyWith<_EmperorCard> get copyWith =>
+      throw _privateConstructorUsedError;
 }
