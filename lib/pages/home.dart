@@ -31,11 +31,12 @@ class HomePage extends HookWidget {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8),
+          padding: const EdgeInsets.only(left: 32, right: 32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   for (int i = 0; i < playerDeck.length; i++)
                     ECardWidget(cardType: playerDeck[i].cardType),
@@ -87,16 +88,19 @@ class ECardWidget extends StatelessWidget {
         break;
     }
 
-    return Card(
-      child: Container(
-        color: color,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 60, bottom: 60),
-          child: Container(
-            height: 40,
-            width: 100,
-            color: Colors.white,
-            child: Center(child: Text(text)),
+    return Container(
+      transform: Matrix4.translationValues(0.0, 54.0, 0.0),
+      child: Card(
+        child: Container(
+          color: color,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 60, bottom: 60),
+            child: Container(
+              height: 40,
+              width: 100,
+              color: Colors.white,
+              child: Center(child: Text(text)),
+            ),
           ),
         ),
       ),
