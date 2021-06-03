@@ -1,9 +1,17 @@
 import 'package:e_card/pages/home.dart';
+import 'package:e_card/pages/my_home.dart';
+import 'package:e_card/pages/start.dart';
 import 'package:e_card/providers/ecard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 
-class MyApp extends StatelessWidget {
+enum Page {
+  start,
+  game,
+}
+
+class MyApp extends HookWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -12,7 +20,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      onGenerateRoute: (settings) {
+        if (settings.name == '/') {
+          return MaterialPageRoute(builder: (context) => StartPage());
+        }
+
+        if (settings.name == '/play') {
+          return MaterialPageRoute(builder: (context) => HomePage());
+        }
+
+        // Default Routing
+        return MaterialPageRoute(builder: (context) => StartPage());
+      },
     );
   }
 }

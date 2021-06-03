@@ -12,7 +12,7 @@ class HomePage extends HookWidget {
   Widget build(BuildContext context) {
     final provider = useProvider(eCardProvider);
 
-    final player =
+    final playerDeck =
         [provider.player1Deck, provider.player2Deck].toList()[provider.phase];
 
     return Scaffold(
@@ -30,28 +30,26 @@ class HomePage extends HookWidget {
               Text('winFlag: ${provider.winFlag}'),
             ],
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Row(
-                children: [
-                  for (int i = 0;
-                      i <
-                          (provider.phase == 0
-                              ? provider.player1Deck.length
-                              : provider.player2Deck.length);
-                      i++)
-                    ElevatedButton(
-                        onPressed: () {
-                          context
-                              .read(eCardProvider.notifier)
-                              .setPlayerCard(provider.phase + 1, i);
-                        },
-                        child:
-                            Text(player[i].cardType.toString().split('.')[1]))
-                ],
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Row(
+                  children: [
+                    for (int i = 0; i < playerDeck.length; i++)
+                      ElevatedButton(
+                          onPressed: () {
+                            context
+                                .read(eCardProvider.notifier)
+                                .setPlayerCard(provider.phase + 1, i);
+                          },
+                          child: Text(
+                              playerDeck[i].cardType.toString().split('.')[1]))
+                  ],
+                )
+              ],
+            ),
           ),
         ],
       ),
