@@ -7,8 +7,6 @@ part 'ecard.freezed.dart';
 
 @freezed
 class ECard with _$ECard {
-  const ECard._();
-
   const factory ECard({
     /*
     * デッキ
@@ -59,21 +57,24 @@ class ECard with _$ECard {
         int winFlag,
   }) = _ECard;
 
+  const ECard._(); // 名前無しコンストラクタ
+
   /*
    * 最大ターン
    */
-  final _MAXTURN = 5;
+  // ignore: avoid_field_initializers_in_const_classes
+  final maxTurn = 5;
 }
 
 class ECardNotifier extends StateNotifier<ECard> {
   ECardNotifier() : super(const ECard());
 
   void setPlayerCard(int player, int number) {
-    final _MAXTURN = state._MAXTURN;
+    final maxTurn = state.maxTurn;
     final turn = state.turn;
 
     // ターン数より選択したカード番号が多ければエラー
-    if (number > _MAXTURN - turn) return;
+    if (number > maxTurn - turn) return;
 
     if (player == 1) {
       state =
@@ -86,7 +87,6 @@ class ECardNotifier extends StateNotifier<ECard> {
     }
 
     if (state.phase == 2) {
-      print("バトル");
       battle();
 
       state = state.copyWith(phase: 0, turn: state.turn + 1);
@@ -111,11 +111,10 @@ class ECardNotifier extends StateNotifier<ECard> {
     final card1 = player1Deck[cardChosenByPlayer1];
     final card2 = player2Deck[cardChosenByPlayer2];
 
-    // 選択したカードを削除
-    player1Deck.removeAt(cardChosenByPlayer1);
-    player2Deck.removeAt(cardChosenByPlayer2);
-    state = state.copyWith(player1Deck: player1Deck, player2Deck: player2Deck);
-
+    // 勝利条件を分岐
+    // 1  -> 勝ち
+    // 0  -> 引き分け
+    // -1 -> 負け
     switch (card1.compare(card2)) {
       case -1:
         winFlag = 2;
@@ -123,10 +122,14 @@ class ECardNotifier extends StateNotifier<ECard> {
       case 0:
         break;
       case 1:
-        print("1pWin");
         winFlag = 1;
         break;
     }
+
+    // 選択したカードを使用済みとして削除
+    player1Deck.removeAt(cardChosenByPlayer1);
+    player2Deck.removeAt(cardChosenByPlayer2);
+    state = state.copyWith(player1Deck: player1Deck, player2Deck: player2Deck);
 
     // 選んだカードを初期化＆winFlagを反映
     state = state.copyWith(

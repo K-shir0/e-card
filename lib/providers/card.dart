@@ -10,11 +10,11 @@ enum CardType {
 
 @freezed
 class Card with _$Card {
-  const Card._();
-
   const factory Card({
     @Default(CardType.citizen) CardType cardType,
   }) = _Card;
+
+  const Card._();
 
   int compare(Card card) {
     switch (cardType) {
