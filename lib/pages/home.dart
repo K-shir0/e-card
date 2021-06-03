@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final eCardProvider = StateNotifierProvider<ECardNotifier, ECard>(
-  (refs) => ECardNotifier(),
-);
-
 class HomePage extends HookWidget {
+  final eCardProvider = StateNotifierProvider<ECardNotifier, ECard>(
+        (refs) => ECardNotifier(),
+  );
+
   @override
   Widget build(BuildContext context) {
     final provider = useProvider(eCardProvider);
