@@ -120,9 +120,6 @@ class ECardWidget extends StatelessWidget {
 
   const ECardWidget({this.cardType, required this.onTapHandler});
 
-  // 73e5e5
-  // e5e573
-
   @override
   Widget build(BuildContext context) {
     String text = "";
