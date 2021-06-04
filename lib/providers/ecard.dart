@@ -55,6 +55,14 @@ class ECard with _$ECard {
      */
     @Default(0)
         int winFlag,
+
+    // 手札を表示するか
+    @Default(true)
+        bool isHandfulVisible,
+
+    // カードを表にするか
+    @Default(false)
+        bool isCardFront,
   }) = _ECard;
 
   const ECard._(); // 名前無しコンストラクタ
@@ -69,6 +77,9 @@ class ECard with _$ECard {
 class ECardNotifier extends StateNotifier<ECard> {
   ECardNotifier() : super(const ECard());
 
+  /*
+   * カードを選択した後フェイズを進める
+   */
   void setPlayerCard(int player, int number) {
     final maxTurn = state.maxTurn;
     final turn = state.turn;
@@ -77,19 +88,80 @@ class ECardNotifier extends StateNotifier<ECard> {
     if (number > maxTurn - turn) return;
 
     if (player == 1) {
-      state =
-          state.copyWith(phase: state.phase + 1, cardChosenByPlayer1: number);
+      state = state.copyWith(cardChosenByPlayer1: number);
     }
 
     if (player == 2) {
-      state =
-          state.copyWith(phase: state.phase + 1, cardChosenByPlayer2: number);
+      state = state.copyWith(cardChosenByPlayer2: number);
     }
 
     if (state.phase == 2) {
       battle();
+    }
 
-      state = state.copyWith(phase: 0, turn: state.turn + 1);
+    // 次のフェイズへ
+    nextPhase();
+  }
+
+  void nextPhase() {
+    /*
+     * フェイズ0
+     * プレイヤー1がカードを選択する
+     *
+     * フェイズ1
+     * プレイヤー2がカードを選択する
+     *
+     * フェイズ2
+     * 裏面のカードが二つ並んでいる状態
+     *
+     * フェイズ3 対戦フェイズ
+     * カードを表にして対戦するフェイズ
+     *
+     * フェイズ4 WinCheckフェイズ何もなければ次のターンへ
+     *
+     */
+    state = state.copyWith(phase: state.phase + 1);
+
+    if (state.phase == 2) {
+      state = state.copyWith(isHandfulVisible: false);
+    }
+
+    if (state.phase == 3) {
+      state = state.copyWith(isCardFront: true);
+      battle();
+    }
+
+    if (state.phase == 4) {
+      if (state.winFlag != 0) return;
+
+      // カードを消す
+      final cardChosenByPlayer1 = state.cardChosenByPlayer1;
+      final cardChosenByPlayer2 = state.cardChosenByPlayer2;
+
+      final player1Deck = [...state.player1Deck];
+      final player2Deck = [...state.player2Deck];
+
+      // 選択カードのチェック
+      if (cardChosenByPlayer1 == null || cardChosenByPlayer2 == null) return;
+
+      // 選択したカードを使用済みとして削除
+      player1Deck.removeAt(cardChosenByPlayer1);
+      player2Deck.removeAt(cardChosenByPlayer2);
+
+      state = state.copyWith(
+        // フェイズの初期化
+        phase: 0,
+        // 選択カードの初期化
+        cardChosenByPlayer1: null,
+        cardChosenByPlayer2: null,
+        // デッキの反映
+        player1Deck: player1Deck,
+        player2Deck: player2Deck,
+        // ターンの追加
+        turn: state.turn + 1,
+        isHandfulVisible: true,
+        isCardFront: false,
+      );
     }
   }
 
@@ -126,16 +198,9 @@ class ECardNotifier extends StateNotifier<ECard> {
         break;
     }
 
-    // 選択したカードを使用済みとして削除
-    player1Deck.removeAt(cardChosenByPlayer1);
-    player2Deck.removeAt(cardChosenByPlayer2);
-    state = state.copyWith(player1Deck: player1Deck, player2Deck: player2Deck);
-
     // 選んだカードを初期化＆winFlagを反映
     state = state.copyWith(
       winFlag: winFlag,
-      cardChosenByPlayer1: null,
-      cardChosenByPlayer2: null,
     );
   }
 }
