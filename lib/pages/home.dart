@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:e_card/providers/card.dart';
 import 'package:e_card/providers/ecard.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +104,7 @@ class HomePage extends HookWidget {
             child: Center(
                 child: Text(
               "${provider.winFlag}P 圧倒的 勝利っ・・",
-              style: TextStyle(fontSize: 48),
+              style: const TextStyle(fontSize: 48),
             )),
           ),
       ],
