@@ -36,16 +36,25 @@ class HomePage extends HookWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   for (int i = 0; i < playerDeck.length; i++)
-                    ECardWidget(cardType: playerDeck[i].cardType),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8, right: 8),
+                      child: Container(
+                        transform: Matrix4.translationValues(0.0, 54.0, 0.0),
+                        child: ECardWidget(
+                          cardType: playerDeck[i].cardType,
+                          onTapHandler: () {
+                            context
+                                .read(eCardProvider.notifier)
+                                .setPlayerCard(provider.phase + 1, i);
+                          },
+                        ),
+                      ),
+                    ),
                   // ElevatedButton(
-                  //   onPressed: () {
-                  //     context
-                  //         .read(eCardProvider.notifier)
-                  //         .setPlayerCard(provider.phase + 1, i);
-                  //   },
+                  // onPressed:,
                   //   child:
                   //       Text(playerDeck[i].cardType.toString().split('.')[1]),
                   // )
@@ -61,8 +70,9 @@ class HomePage extends HookWidget {
 
 class ECardWidget extends StatelessWidget {
   final CardType cardType;
+  final Function() onTapHandler;
 
-  const ECardWidget({required this.cardType});
+  const ECardWidget({required this.cardType, required this.onTapHandler});
 
   // 73e5e5
   // e5e573
@@ -88,8 +98,8 @@ class ECardWidget extends StatelessWidget {
         break;
     }
 
-    return Container(
-      transform: Matrix4.translationValues(0.0, 54.0, 0.0),
+    return InkWell(
+      onTap: onTapHandler,
       child: Card(
         child: Container(
           color: color,
