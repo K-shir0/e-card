@@ -209,5 +209,10 @@ class ECardNotifier extends StateNotifier<ECard> {
 
   void setGameMode(GameMode mode) {
     state = state.copyWith(mode: mode);
+
+    if (mode == GameMode.scan) {
+      state = state.copyWith(isHandfulVisible: false);
+      //TODO  スキャンを呼ぶ
+    }
   }
 }
