@@ -26,6 +26,11 @@ class MyApp extends HookWidget {
           return MaterialPageRoute(builder: (context) => HomePage());
         }
 
+        if (settings.name == '/play/scan') {
+          return MaterialPageRoute(
+              builder: (context) => HomePage(mode: GameMode.scan));
+        }
+
         // Default Routing
         return MaterialPageRoute(builder: (context) => StartPage());
       },

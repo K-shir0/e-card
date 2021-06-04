@@ -1,3 +1,4 @@
+import 'package:e_card/pages/home.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -63,6 +64,8 @@ class ECard with _$ECard {
     // カードを表にするか
     @Default(false)
         bool isCardFront,
+    @Default(GameMode.normal)
+        GameMode mode,
   }) = _ECard;
 
   const ECard._(); // 名前無しコンストラクタ
@@ -202,5 +205,9 @@ class ECardNotifier extends StateNotifier<ECard> {
     state = state.copyWith(
       winFlag: winFlag,
     );
+  }
+
+  void setGameMode(GameMode mode) {
+    state = state.copyWith(mode: mode);
   }
 }

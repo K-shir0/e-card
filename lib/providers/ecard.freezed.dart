@@ -37,7 +37,8 @@ class _$ECardTearOff {
       int phase = 0,
       int winFlag = 0,
       bool isHandfulVisible = true,
-      bool isCardFront = false}) {
+      bool isCardFront = false,
+      GameMode mode = GameMode.normal}) {
     return _ECard(
       player1Deck: player1Deck,
       player2Deck: player2Deck,
@@ -48,6 +49,7 @@ class _$ECardTearOff {
       winFlag: winFlag,
       isHandfulVisible: isHandfulVisible,
       isCardFront: isCardFront,
+      mode: mode,
     );
   }
 }
@@ -82,9 +84,10 @@ mixin _$ECard {
      * 1 -> プレイヤー1の勝利
      * 2 -> プレイヤー2の勝利
      */
-  int get winFlag => throw _privateConstructorUsedError;
-  bool get isHandfulVisible => throw _privateConstructorUsedError;
+  int get winFlag => throw _privateConstructorUsedError; // 手札を表示するか
+  bool get isHandfulVisible => throw _privateConstructorUsedError; // カードを表にするか
   bool get isCardFront => throw _privateConstructorUsedError;
+  GameMode get mode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ECardCopyWith<ECard> get copyWith => throw _privateConstructorUsedError;
@@ -103,7 +106,8 @@ abstract class $ECardCopyWith<$Res> {
       int phase,
       int winFlag,
       bool isHandfulVisible,
-      bool isCardFront});
+      bool isCardFront,
+      GameMode mode});
 }
 
 /// @nodoc
@@ -125,6 +129,7 @@ class _$ECardCopyWithImpl<$Res> implements $ECardCopyWith<$Res> {
     Object? winFlag = freezed,
     Object? isHandfulVisible = freezed,
     Object? isCardFront = freezed,
+    Object? mode = freezed,
   }) {
     return _then(_value.copyWith(
       player1Deck: player1Deck == freezed
@@ -163,6 +168,10 @@ class _$ECardCopyWithImpl<$Res> implements $ECardCopyWith<$Res> {
           ? _value.isCardFront
           : isCardFront // ignore: cast_nullable_to_non_nullable
               as bool,
+      mode: mode == freezed
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as GameMode,
     ));
   }
 }
@@ -181,7 +190,8 @@ abstract class _$ECardCopyWith<$Res> implements $ECardCopyWith<$Res> {
       int phase,
       int winFlag,
       bool isHandfulVisible,
-      bool isCardFront});
+      bool isCardFront,
+      GameMode mode});
 }
 
 /// @nodoc
@@ -204,6 +214,7 @@ class __$ECardCopyWithImpl<$Res> extends _$ECardCopyWithImpl<$Res>
     Object? winFlag = freezed,
     Object? isHandfulVisible = freezed,
     Object? isCardFront = freezed,
+    Object? mode = freezed,
   }) {
     return _then(_ECard(
       player1Deck: player1Deck == freezed
@@ -242,6 +253,10 @@ class __$ECardCopyWithImpl<$Res> extends _$ECardCopyWithImpl<$Res>
           ? _value.isCardFront
           : isCardFront // ignore: cast_nullable_to_non_nullable
               as bool,
+      mode: mode == freezed
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as GameMode,
     ));
   }
 }
@@ -270,7 +285,8 @@ class _$_ECard extends _ECard {
       this.phase = 0,
       this.winFlag = 0,
       this.isHandfulVisible = true,
-      this.isCardFront = false})
+      this.isCardFront = false,
+      this.mode = GameMode.normal})
       : super._();
 
   @JsonKey(defaultValue: const [
@@ -323,15 +339,18 @@ class _$_ECard extends _ECard {
      */
   final int winFlag;
   @JsonKey(defaultValue: true)
-  @override
+  @override // 手札を表示するか
   final bool isHandfulVisible;
   @JsonKey(defaultValue: false)
-  @override
+  @override // カードを表にするか
   final bool isCardFront;
+  @JsonKey(defaultValue: GameMode.normal)
+  @override
+  final GameMode mode;
 
   @override
   String toString() {
-    return 'ECard(player1Deck: $player1Deck, player2Deck: $player2Deck, cardChosenByPlayer1: $cardChosenByPlayer1, cardChosenByPlayer2: $cardChosenByPlayer2, turn: $turn, phase: $phase, winFlag: $winFlag, isHandfulVisible: $isHandfulVisible, isCardFront: $isCardFront)';
+    return 'ECard(player1Deck: $player1Deck, player2Deck: $player2Deck, cardChosenByPlayer1: $cardChosenByPlayer1, cardChosenByPlayer2: $cardChosenByPlayer2, turn: $turn, phase: $phase, winFlag: $winFlag, isHandfulVisible: $isHandfulVisible, isCardFront: $isCardFront, mode: $mode)';
   }
 
   @override
@@ -362,7 +381,9 @@ class _$_ECard extends _ECard {
                     .equals(other.isHandfulVisible, isHandfulVisible)) &&
             (identical(other.isCardFront, isCardFront) ||
                 const DeepCollectionEquality()
-                    .equals(other.isCardFront, isCardFront)));
+                    .equals(other.isCardFront, isCardFront)) &&
+            (identical(other.mode, mode) ||
+                const DeepCollectionEquality().equals(other.mode, mode)));
   }
 
   @override
@@ -376,7 +397,8 @@ class _$_ECard extends _ECard {
       const DeepCollectionEquality().hash(phase) ^
       const DeepCollectionEquality().hash(winFlag) ^
       const DeepCollectionEquality().hash(isHandfulVisible) ^
-      const DeepCollectionEquality().hash(isCardFront);
+      const DeepCollectionEquality().hash(isCardFront) ^
+      const DeepCollectionEquality().hash(mode);
 
   @JsonKey(ignore: true)
   @override
@@ -394,7 +416,8 @@ abstract class _ECard extends ECard {
       int phase,
       int winFlag,
       bool isHandfulVisible,
-      bool isCardFront}) = _$_ECard;
+      bool isCardFront,
+      GameMode mode}) = _$_ECard;
   const _ECard._() : super._();
 
   @override
@@ -429,10 +452,12 @@ abstract class _ECard extends ECard {
      * 2 -> プレイヤー2の勝利
      */
   int get winFlag => throw _privateConstructorUsedError;
-  @override
+  @override // 手札を表示するか
   bool get isHandfulVisible => throw _privateConstructorUsedError;
-  @override
+  @override // カードを表にするか
   bool get isCardFront => throw _privateConstructorUsedError;
+  @override
+  GameMode get mode => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ECardCopyWith<_ECard> get copyWith => throw _privateConstructorUsedError;

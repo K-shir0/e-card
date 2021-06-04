@@ -13,10 +13,17 @@ class StartPage extends StatelessWidget {
               style: TextStyle(fontSize: 40),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                 onPressed: () => Navigator.pushNamed(context, '/play'),
                 child: const Text("ゲームを始める"),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () => Navigator.pushNamed(context, '/play/scan'),
+                child: const Text("スキャンモード"),
               ),
             ),
           ],
