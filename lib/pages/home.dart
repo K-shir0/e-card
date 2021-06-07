@@ -1,6 +1,7 @@
 import 'package:e_card/providers/card.dart';
 import 'package:e_card/providers/ecard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -13,6 +14,24 @@ class HomePage extends HookWidget {
   final eCardProvider = StateNotifierProvider<ECardNotifier, ECard>(
     (refs) => ECardNotifier(),
   );
+
+  final MethodChannel _methodChannel = MethodChannel("samples.flutter.dev/nfc");
+
+   Future<String> scanNfcTag() async {
+    String _uid = "";
+
+    try {
+      // _uid = await _methodChannel.invokeMethod("getNfcTag");
+      await _methodChannel.invokeMethod("getNfcTag").then((value) {
+        print(value);
+      });
+      print(_uid);
+    } catch (e) {
+      print(e);
+    }
+
+    return _uid;
+  }
 
   // ゲームモード
   final GameMode mode;
@@ -93,26 +112,35 @@ class HomePage extends HookWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    for (int i = 0; i < playerDeck.length; i++)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 8),
-                        child: Container(
-                          transform: Matrix4.translationValues(0.0, 54.0, 0.0),
-                          child: ECardWidget(
-                            cardType: playerDeck[i].cardType,
-                            onTapHandler: () {
-                              context
-                                  .read(eCardProvider.notifier)
-                                  .setPlayerCard(provider.phase + 1, i);
-                            },
+                if (mode != GameMode.scan)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (int i = 0; i < playerDeck.length; i++)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          child: Container(
+                            transform:
+                                Matrix4.translationValues(0.0, 54.0, 0.0),
+                            child: ECardWidget(
+                              cardType: playerDeck[i].cardType,
+                              onTapHandler: () {
+                                context
+                                    .read(eCardProvider.notifier)
+                                    .setPlayerCard(provider.phase + 1, i);
+                              },
+                            ),
                           ),
                         ),
-                      ),
-                  ],
-                )
+                    ],
+                  )
+                else
+                  ElevatedButton(
+                    onPressed: () {
+                      scanNfcTag().then((value) => print(value));
+                    },
+                    child: Text("NFC"),
+                  )
               ],
             ),
           ),
@@ -172,7 +200,7 @@ class ECardWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 60, bottom: 60),
             child: Container(
               height: 40,
-              width: 100,
+              width: 80,
               color: Colors.white.withOpacity(0.8),
               child: Center(child: Text(text)),
             ),
